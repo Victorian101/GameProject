@@ -15,10 +15,10 @@ public class MovementListener implements KeyListener {
 
     public void keyPressed(KeyEvent e) {
         switch (e.getKeyCode()){
-            case KeyEvent.VK_LEFT -> this.gamePanel.getRabbit().moveLeft();
-            case KeyEvent.VK_RIGHT -> this.gamePanel.getRabbit().moveRight();
-            case KeyEvent.VK_UP -> this.gamePanel.getRabbit().moveUp();
-            case KeyEvent.VK_DOWN -> this.gamePanel.getRabbit().moveDown();
+//            case KeyEvent.VK_LEFT -> this.gamePanel.getRabbit().moveLeft();
+//            case KeyEvent.VK_RIGHT -> this.gamePanel.getRabbit().moveRight();
+//            case KeyEvent.VK_UP -> this.gamePanel.getRabbit().moveUp();
+//            case KeyEvent.VK_DOWN -> this.gamePanel.getRabbit().moveDown();
         }
 
 
