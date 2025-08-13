@@ -8,6 +8,7 @@ import java.awt.event.KeyEvent;
 public class GamePanel extends JPanel {
     private JFrame frame;
     private Rabbit rabbit = new Rabbit();
+//    private Level1 level1 = new Level1(frame);
 
     public GamePanel(JFrame frame){
         this.frame = frame;
@@ -15,6 +16,9 @@ public class GamePanel extends JPanel {
         this.setFocusTraversalKeysEnabled(false);
         this.setLayout(null);
         this.setBounds(0, 0, Main.WINDOW_WIDTH, Main.WINDOW_HEIGHT);
+
+
+
 //        this.setBackground(new Color(76, 122, 145));
 
 
@@ -36,7 +40,9 @@ public class GamePanel extends JPanel {
     @Override
     public void paintComponent(Graphics graphics){
         super.paintComponent(graphics);
-        rabbit.paint(graphics);
+//        rabbit.paint(graphics);
+//        level1.paint(graphics);
+
     }
 
     public Rabbit getRabbit() {
