@@ -11,6 +11,7 @@ public class Level1 extends GamePanel{
     public static final int BLOCK = 1;
     public static final int CARROT = 2;
     public static final int EMPTY = 0;
+    public static final int GOAL =3;
 
     public static final int TILE_SIZE = 55;
     public static final int COLS = 18; //Main.WINDOW_WIDTH / TILE_SIZE;
@@ -20,7 +21,7 @@ public class Level1 extends GamePanel{
     private int totalCarrot;
 
     private int[][] map = {
-            {BLOCK,BLOCK,BLOCK,BLOCK,BLOCK,BLOCK,BLOCK,BLOCK,BLOCK,BLOCK,BLOCK,BLOCK,BLOCK,BLOCK,BLOCK,BLOCK,BLOCK,BLOCK},
+            {BLOCK,BLOCK,BLOCK,BLOCK,BLOCK,BLOCK,BLOCK,BLOCK,BLOCK,GOAL,BLOCK,BLOCK,BLOCK,BLOCK,BLOCK,BLOCK,BLOCK,BLOCK},
             {BLOCK,EMPTY,EMPTY,EMPTY,EMPTY,EMPTY,EMPTY,CARROT,EMPTY,EMPTY,EMPTY,EMPTY,EMPTY,EMPTY,EMPTY,EMPTY,EMPTY,BLOCK},
             {BLOCK,EMPTY,BLOCK,BLOCK,BLOCK,EMPTY,BLOCK,BLOCK,BLOCK,EMPTY,BLOCK,BLOCK,BLOCK,EMPTY,BLOCK,BLOCK,EMPTY,BLOCK},
             {BLOCK,EMPTY,BLOCK,CARROT,BLOCK,EMPTY,EMPTY,EMPTY,EMPTY,EMPTY,EMPTY,EMPTY,BLOCK,EMPTY,EMPTY,BLOCK,EMPTY,BLOCK},
@@ -66,6 +67,7 @@ public class Level1 extends GamePanel{
                             if (isPossible(nextRow, nextCol)) {
                                 rabbit.moveUp();
                                 upLock = true;
+                                collectCarrot(nextRow, nextCol);
                             }
                         }
                     }
@@ -75,6 +77,7 @@ public class Level1 extends GamePanel{
                             if(isPossible(nextRow, nextCol)){
                                 rabbit.moveDown(ROW);
                                 downLock = true;
+                                collectCarrot(nextRow, nextCol);
                             }
 
                         }
@@ -85,6 +88,7 @@ public class Level1 extends GamePanel{
                             if(isPossible(nextRow, nextCol)){
                                 rabbit.moveLeft();
                                 leftLock = true;
+                                collectCarrot(nextRow, nextCol);
                             }
                         }
                     }
@@ -94,6 +98,7 @@ public class Level1 extends GamePanel{
                             if(isPossible(nextRow, nextCol)){
                                 rabbit.moveRight(COLS);
                                 rightLock = true;
+                                collectCarrot(nextRow, nextCol);
                             }
                         }
                     }
@@ -133,6 +138,13 @@ public class Level1 extends GamePanel{
                 }else if(tile == CARROT){
                     graphics.setColor(Color.ORANGE);
                     graphics.fillOval(c * TILE_SIZE + 5 , r * TILE_SIZE + 5, TILE_SIZE - 10, TILE_SIZE - 10);
+                }else if(tile == GOAL){
+                    graphics.setColor(Color.RED);
+                    graphics.fillOval(c * TILE_SIZE + 4, r * TILE_SIZE + 4, TILE_SIZE - 8, TILE_SIZE - 8 );
+                    graphics.setColor(Color.BLACK);
+                    graphics.fillOval(c * TILE_SIZE + 8, r * TILE_SIZE + 8, TILE_SIZE - 16, TILE_SIZE - 16  );
+                    graphics.setColor(Color.RED);
+                    graphics.fillOval(c * TILE_SIZE + 12, r * TILE_SIZE + 12, TILE_SIZE - 24, TILE_SIZE - 24  );
                 }
 
                 graphics.setColor(Color.BLACK);
@@ -157,7 +169,7 @@ public class Level1 extends GamePanel{
 
     }
 
-    public void colectCarrot (int r, int c){
+    public void collectCarrot (int r, int c){
         if(map[r][c] == CARROT){
             map[r][c] = EMPTY;
             carrotCount++;
