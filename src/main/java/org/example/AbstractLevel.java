@@ -23,7 +23,7 @@ public class AbstractLevel extends GamePanel{
     private Rabbit rabbit;
     private boolean upLock, downLock, rightLock, leftLock;
 
-    public AbstractLevel(JFrame frame, int[][] map, int startRow, int startCol) {
+    public AbstractLevel(JFrame frame,  int startRow, int startCol, int[][] map) {
         super(frame);
         this.map = map;
         this.rows = map.length;
@@ -31,11 +31,16 @@ public class AbstractLevel extends GamePanel{
         this.setBackground(new Color(144, 238, 144));
         this.setPreferredSize(new Dimension(cols * TILE_SIZE, rows * TILE_SIZE));
         this.setLayout(null);
-        rabbit = new Rabbit( 12, 8, TILE_SIZE);
+        rabbit = new Rabbit( startRow, startCol, TILE_SIZE);
         setupKeyAdapter();
         carrotInMap();
 
     }
+
+    public AbstractLevel() {
+        super(new Frame());
+    }
+
     @Override
     public void paintComponent(Graphics graphics) {
         super.paintComponent(graphics);
@@ -65,6 +70,8 @@ public class AbstractLevel extends GamePanel{
             graphics.fillOval(750, 30, 20, 20);
             graphics.setColor(Color.BLACK);
             graphics.drawString(this.carrotCount + "/" + this.totalCarrot, 790, 40);
+
+            rabbit.paint(graphics);
         }
     }
     private void setupKeyAdapter() {
@@ -148,7 +155,6 @@ public class AbstractLevel extends GamePanel{
         }
         if(tile == CARROT){
             map[nextR][nextC] = EMPTY;
-            this.totalCarrot--;
             this.carrotCount++;
         }
         if(tile == GOAL && allCollected()){
@@ -162,6 +168,18 @@ public class AbstractLevel extends GamePanel{
 
 
     public void nextLevel(){
+        AbstractLevel next = createNewLevel();
+        JFrame f = getFrame();
+        if(next == null){
+            return;
+        }
+        f.setContentPane(next);
+        f.pack();
+        next.requestFocusInWindow();
 
+    }
+    public AbstractLevel createNewLevel(){
+
+        return null;
     }
 }

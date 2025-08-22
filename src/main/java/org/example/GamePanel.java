@@ -2,15 +2,16 @@ package org.example;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
 
 public class GamePanel extends JPanel {
     private JFrame frame;
 
+    public JFrame getFrame() {
+        return frame;
+    }
 
-    public GamePanel(JFrame frame){
-        this.frame = frame;
+    public GamePanel(Frame frame){
+        this.frame = (JFrame) frame;
         this.setFocusable(true);
         this.setDoubleBuffered(true);
 
