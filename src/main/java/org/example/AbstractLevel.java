@@ -37,9 +37,7 @@ public class AbstractLevel extends GamePanel{
 
     }
 
-    public AbstractLevel() {
-        super(new Frame());
-    }
+
 
     @Override
     public void paintComponent(Graphics graphics) {

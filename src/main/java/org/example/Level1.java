@@ -18,7 +18,6 @@ public class Level1 extends AbstractLevel{
     public static final int ROW = 14 ;//Main.WINDOW_HEIGHT / TILE_SIZE;
 
 
-
     private static final int[][] MAP = {
             {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
             {1,1,1,1,0,0,0,0,0,0,0,1,1,1,1,1,1,1},
@@ -40,13 +39,13 @@ public class Level1 extends AbstractLevel{
 
 
 
-
     public Level1(JFrame frame) {
+
         super(frame, 10, 7, MAP);
     }
 
     public AbstractLevel createNextLevel(){
-        return new Level2(getFrame());
+        return new Level2();
     }
 
 
