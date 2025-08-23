@@ -24,7 +24,7 @@ public class Level1 extends AbstractLevel{
             {1,1,1,1,0,0,0,3,0,0,0,1,1,1,1,1,1,1},
             {1,1,1,1,0,1,1,1,1,1,0,1,1,1,1,1,1,1},
             {1,1,1,1,0,1,2,2,2,1,0,1,1,1,1,1,1,1},
-            {1,1,1,1,0,1,2,2,2,1,0,1,1,1,1,1,1,1},
+            {1,1,1,4,0,1,2,2,2,1,0,1,1,1,1,1,1,1},
             {1,1,1,1,0,1,2,2,2,1,0,1,1,1,1,1,1,1},
             {1,1,1,1,0,1,1,0,1,1,0,1,1,1,1,1,1,1},
             {1,1,1,1,0,0,0,0,0,0,0,1,1,1,1,1,1,1},
@@ -44,8 +44,8 @@ public class Level1 extends AbstractLevel{
         super(frame, 10, 7, MAP);
     }
 
-    public AbstractLevel createNextLevel(){
-        return new Level2();
+    public AbstractLevel createNewLevel(){
+        return new Level2(getFrame());
     }
 
 

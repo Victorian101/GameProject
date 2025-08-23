@@ -10,8 +10,12 @@ public class AbstractLevel extends GamePanel{
     public static final int BLOCK = 1;
     public static final int CARROT = 2;
     public static final int GOAL = 3;
+    public static final int TRAP = 4;
+    public static final int TRAP_USED = 5;
 
     public static final int TILE_SIZE = 55;
+
+    public boolean steppedOnTrap;
 
     private int cols;
     private int rows;
@@ -20,6 +24,8 @@ public class AbstractLevel extends GamePanel{
     private int totalCarrot;
 
     private int[][] map;
+    private int[][] initialMap;
+    private int startRow, startCol;
     private Rabbit rabbit;
     private boolean upLock, downLock, rightLock, leftLock;
 
@@ -28,12 +34,16 @@ public class AbstractLevel extends GamePanel{
         this.map = map;
         this.rows = map.length;
         this.cols = map[0].length;
+        this.startRow = startRow;
+        this.startCol = startCol;
+        this.steppedOnTrap = false;
         this.setBackground(new Color(144, 238, 144));
         this.setPreferredSize(new Dimension(cols * TILE_SIZE, rows * TILE_SIZE));
         this.setLayout(null);
         rabbit = new Rabbit( startRow, startCol, TILE_SIZE);
         setupKeyAdapter();
         carrotInMap();
+        this.initialMap = copyMap(map);
 
     }
 
@@ -58,6 +68,12 @@ public class AbstractLevel extends GamePanel{
                     graphics.fillOval(c * TILE_SIZE + 8, r * TILE_SIZE + 8, TILE_SIZE - 16, TILE_SIZE - 16);
                     graphics.setColor(Color.RED);
                     graphics.fillOval(c * TILE_SIZE + 12, r * TILE_SIZE + 12, TILE_SIZE - 24, TILE_SIZE - 24);
+                }else if (tile == TRAP){
+                    graphics.setColor(Color.YELLOW);
+                    graphics.fillOval(c * TILE_SIZE + 12, r * TILE_SIZE + 12, TILE_SIZE - 24, TILE_SIZE - 24);
+                }else if(tile == TRAP_USED){
+                    graphics.setColor(Color.RED);
+                    graphics.fillRect(c * TILE_SIZE + 12, r * TILE_SIZE + 12, TILE_SIZE - 24, TILE_SIZE - 24);
                 }
 
                 graphics.setColor(Color.BLACK);
@@ -158,10 +174,37 @@ public class AbstractLevel extends GamePanel{
         if(tile == GOAL && allCollected()){
             nextLevel();
         }
+        if(tile == TRAP){
+            if(!steppedOnTrap){
+                steppedOnTrap = true;
+                map[nextR][nextC] = TRAP_USED;
+            }else{
+                restartLevel();
+            }
+        }
     }
 
     public boolean allCollected(){
         return this.carrotCount == this.totalCarrot;
+    }
+
+    public int[][] copyMap (int[][] map){
+        int[][] copy = new int[map.length][];
+        for (int i = 0; i < map.length; i++) {
+            copy[i] = map[i].clone();
+        }
+        return copy;
+    }
+
+    public void restartLevel(){
+        this.map = copyMap(initialMap);
+        this.rabbit = new Rabbit(startRow , startCol, TILE_SIZE);
+        this.carrotInMap();
+        this.steppedOnTrap = false;
+        revalidate();
+        repaint();
+        requestFocusInWindow();
+
     }
 
 
