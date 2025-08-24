@@ -1,5 +1,7 @@
 package org.example;
 
+import org.w3c.dom.ls.LSOutput;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.KeyAdapter;
@@ -37,13 +39,14 @@ public class AbstractLevel extends GamePanel{
         this.startRow = startRow;
         this.startCol = startCol;
         this.steppedOnTrap = false;
+        this.initialMap = copyMap(map);
         this.setBackground(new Color(144, 238, 144));
         this.setPreferredSize(new Dimension(cols * TILE_SIZE, rows * TILE_SIZE));
         this.setLayout(null);
         rabbit = new Rabbit( startRow, startCol, TILE_SIZE);
         setupKeyAdapter();
         carrotInMap();
-        this.initialMap = copyMap(map);
+
 
     }
 
@@ -175,12 +178,10 @@ public class AbstractLevel extends GamePanel{
             nextLevel();
         }
         if(tile == TRAP){
-            if(!steppedOnTrap){
-                steppedOnTrap = true;
-                map[nextR][nextC] = TRAP_USED;
-            }else{
-                restartLevel();
-            }
+            map[nextR][nextC] = TRAP_USED;
+        }
+        if(tile == TRAP_USED){
+            restartLevel();
         }
     }
 
@@ -197,6 +198,7 @@ public class AbstractLevel extends GamePanel{
     }
 
     public void restartLevel(){
+        System.out.println("Restarted level ------->");
         this.map = copyMap(initialMap);
         this.rabbit = new Rabbit(startRow , startCol, TILE_SIZE);
         this.carrotInMap();

@@ -8,23 +8,13 @@ import java.awt.event.KeyEvent;
 
 public class Level1 extends AbstractLevel{
 
-    public static final int BLOCK = 1;
-    public static final int CARROT = 2;
-    public static final int EMPTY = 0;
-    public static final int GOAL =3;
-
-    public static final int TILE_SIZE = 55;
-    public static final int COLS = 18; //Main.WINDOW_WIDTH / TILE_SIZE;
-    public static final int ROW = 14 ;//Main.WINDOW_HEIGHT / TILE_SIZE;
-
-
     private static final int[][] MAP = {
             {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
             {1,1,1,1,0,0,0,0,0,0,0,1,1,1,1,1,1,1},
             {1,1,1,1,0,0,0,3,0,0,0,1,1,1,1,1,1,1},
             {1,1,1,1,0,1,1,1,1,1,0,1,1,1,1,1,1,1},
             {1,1,1,1,0,1,2,2,2,1,0,1,1,1,1,1,1,1},
-            {1,1,1,4,0,1,2,2,2,1,0,1,1,1,1,1,1,1},
+            {1,1,1,1,0,1,2,2,2,1,0,1,1,1,1,1,1,1},
             {1,1,1,1,0,1,2,2,2,1,0,1,1,1,1,1,1,1},
             {1,1,1,1,0,1,1,0,1,1,0,1,1,1,1,1,1,1},
             {1,1,1,1,0,0,0,0,0,0,0,1,1,1,1,1,1,1},
