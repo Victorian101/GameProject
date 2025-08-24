@@ -72,7 +72,7 @@ public class AbstractLevel extends GamePanel{
                     graphics.setColor(Color.RED);
                     graphics.fillOval(c * TILE_SIZE + 12, r * TILE_SIZE + 12, TILE_SIZE - 24, TILE_SIZE - 24);
                 }else if (tile == TRAP){
-                    graphics.setColor(Color.YELLOW);
+                    graphics.setColor(Color.GRAY);
                     graphics.fillOval(c * TILE_SIZE + 12, r * TILE_SIZE + 12, TILE_SIZE - 24, TILE_SIZE - 24);
                 }else if(tile == TRAP_USED){
                     graphics.setColor(Color.RED);
