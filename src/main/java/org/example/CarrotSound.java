@@ -19,18 +19,16 @@ public class CarrotSound {
             clip.open(audioIn);
 
         } catch (UnsupportedAudioFileException e) {
-            throw new RuntimeException("Use WAV PCM 16-bit for simplicity", e);
+            throw new RuntimeException(e);
         } catch (LineUnavailableException e) {
-            throw new RuntimeException("Audio line unavailable", e);
+            throw new RuntimeException(e);
         } catch (IOException e) {
-            throw new RuntimeException("IO error reading /sounds/carrot.wav", e);
+            throw new RuntimeException(e);
         }
     }
 
     public void play(){
-        if(clip == null){
-            return;
-        }
+        if(clip == null) return;
         if(clip.isRunning()){
             clip.stop();
         }

@@ -5,13 +5,13 @@ import javax.swing.*;
 import java.awt.*;
 
 
-
-
 public class StartWindow extends JPanel {
+    private BackgroundSound music;
 
 
     private JFrame frame;
-    public StartWindow(JFrame frame){
+
+    public StartWindow(JFrame frame) {
         this.frame = frame;
         this.setBounds(0, 0, Main.WINDOW_WIDTH, Main.WINDOW_HEIGHT);
         this.setLayout(null);
@@ -30,7 +30,7 @@ public class StartWindow extends JPanel {
         this.add(button2);
         this.add(button3);
 
-        button1.addActionListener(e->{
+        button1.addActionListener(e -> {
             Level1 level1 = new Level1(frame);
             frame.setContentPane(level1);
             frame.revalidate();
@@ -43,6 +43,10 @@ public class StartWindow extends JPanel {
             frame.revalidate();
             frame.repaint();
         });
+
+        music = new BackgroundSound();
+        music.setVolumeDb(-12.0f);
+        music.loop();
 
 
     }
