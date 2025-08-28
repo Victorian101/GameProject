@@ -31,6 +31,8 @@ public class AbstractLevel extends GamePanel{
     private Rabbit rabbit;
     private boolean upLock, downLock, rightLock, leftLock;
 
+    private CarrotSound carrotSound;
+
     public AbstractLevel(JFrame frame,  int startRow, int startCol, int[][] map) {
         super(frame);
         this.map = map;
@@ -43,6 +45,7 @@ public class AbstractLevel extends GamePanel{
         this.setBackground(new Color(144, 238, 144));
         this.setPreferredSize(new Dimension(cols * TILE_SIZE, rows * TILE_SIZE));
         this.setLayout(null);
+        carrotSound = new CarrotSound();
         rabbit = new Rabbit( startRow, startCol, TILE_SIZE);
         setupKeyAdapter();
         carrotInMap();
@@ -171,6 +174,7 @@ public class AbstractLevel extends GamePanel{
             rabbit.moveUp();
         }
         if(tile == CARROT){
+            carrotSound.play();
             map[nextR][nextC] = EMPTY;
             this.carrotCount++;
         }
