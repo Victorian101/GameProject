@@ -34,6 +34,7 @@ public class Level1 extends AbstractLevel{
         super(frame, 10, 7, MAP);
     }
 
+    @Override
     public AbstractLevel createNewLevel(){
         return new Level2(getFrame());
     }

@@ -23,5 +23,10 @@ public class Level5 extends AbstractLevel{
     public Level5(JFrame frame) {
         super(frame, 10, 2, MAP);
     }
+
+    @Override
+    public AbstractLevel createNewLevel(){
+        return new VictoryPanel(getFrame());
+    }
 }
 
