@@ -9,7 +9,6 @@ public class Main {
     public static final int WIDTH_BUTTON = 150;
 
     public static void main(String[] args) {
-        System.out.println();
         JFrame window = new JFrame("Best game ever");
         window.setSize(WINDOW_WIDTH, WINDOW_HEIGHT);
         window.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
