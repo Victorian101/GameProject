@@ -198,7 +198,6 @@ public class AbstractLevel extends GamePanel{
     }
 
     public void restartLevel(){
-        System.out.println("Restarted level ------->");
         this.map = copyMap(initialMap);
         this.rabbit = new Rabbit(startRow , startCol, TILE_SIZE);
         this.carrotInMap();
